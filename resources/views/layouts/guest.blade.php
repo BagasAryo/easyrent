@@ -13,7 +13,7 @@
 
                 <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
                     <a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a>
-                    <a href="#katalog" class="hover:text-white transition">Katalog Mobil</a>
+                    <a href="#katalog" class="hover:text-white transition">Katalog Motor</a>
                     <a href="#fitur" class="hover:text-white transition">Keunggulan</a>
                 </nav>
 
@@ -50,7 +50,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-zinc-400">
                 <div class="flex items-center gap-3">
                     <x-app-logo />
-                    <span>&copy; {{ date('Y') }} EasyRent. Layanan Rental Mobil Terpercaya.</span>
+                    <span>&copy; {{ date('Y') }} EasyRent. Layanan Rental Motor Terpercaya.</span>
                 </div>
                 <div class="flex items-center gap-6">
                     <a href="#" class="hover:text-white transition">Syarat & Ketentuan</a>

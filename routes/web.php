@@ -22,7 +22,7 @@ Route::middleware(['auth', 'verified'])->prefix('user')->name('user.')->group(fu
 // 3. ADMIN AREA
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::livewire('/dashboard', 'pages::admin.dashboard')->name('dashboard');
-    Route::livewire('/cars', 'pages::admin.cars.index')->name('cars.index');
+    Route::livewire('/motors', 'pages::admin.motors.index')->name('motors.index');
     Route::livewire('/bookings', 'pages::admin.bookings.index')->name('bookings.index');
 });
 

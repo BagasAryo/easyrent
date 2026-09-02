@@ -6,7 +6,7 @@
     <body class="min-h-screen bg-white dark:bg-zinc-800">
         <flux:sidebar sticky collapsible="mobile" class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
             <flux:sidebar.header>
-                <x-app-logo :sidebar="true" href="{{ route('admin.dashboard') }}" wire:navigate />
+                <x-app-logo :sidebar="true" href="{{ route('home') }}" wire:navigate />
                 <flux:sidebar.collapse class="lg:hidden" />
             </flux:sidebar.header>
 
@@ -15,8 +15,8 @@
                     <flux:sidebar.item icon="layout-grid" :href="route('admin.dashboard')" :current="request()->routeIs('admin.dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
-                    <flux:sidebar.item icon="truck" :href="route('admin.cars.index')" :current="request()->routeIs('admin.cars.*')" wire:navigate>
-                        {{ __('Kelola Mobil') }}
+                    <flux:sidebar.item icon="truck" :href="route('admin.motors.index')" :current="request()->routeIs('admin.motors.*')" wire:navigate>
+                        {{ __('Kelola Motor') }}
                     </flux:sidebar.item>
                     <flux:sidebar.item icon="clipboard-document-list" :href="route('admin.bookings.index')" :current="request()->routeIs('admin.bookings.*')" wire:navigate>
                         {{ __('Kelola Booking') }}
@@ -28,12 +28,6 @@
             </flux:sidebar.nav>
 
             <flux:spacer />
-
-            <flux:sidebar.nav>
-                <flux:sidebar.item icon="arrow-left-start-on-rectangle" href="{{ route('home') }}" wire:navigate>
-                    {{ __('Ke Landing Page') }}
-                </flux:sidebar.item>
-            </flux:sidebar.nav>
 
             <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()?->name ?? 'Admin'" />
         </flux:sidebar>
