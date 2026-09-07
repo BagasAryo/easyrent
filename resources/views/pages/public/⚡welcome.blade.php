@@ -1,11 +1,17 @@
 <?php
 
+use App\Models\Motorcycle;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
 new #[Title('Sewa Motor Mudah & Terpercaya')] #[Layout('layouts.guest')] class extends Component {
-    // Guest landing page logic
+    public function with(): array
+    {
+        return [
+            'motors' => Motorcycle::with('primaryPhoto')->limit(3)->get(),
+        ];
+    }
 }; ?>
 
 <div class="w-full">
@@ -113,71 +119,35 @@ new #[Title('Sewa Motor Mudah & Terpercaya')] #[Layout('layouts.guest')] class e
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Motor Item Card 1 -->
-        <div class="rounded-2xl bg-zinc-900 border border-zinc-800 overflow-hidden flex flex-col justify-between">
-          <div class="aspect-video bg-zinc-950 flex items-center justify-center text-zinc-600 relative">
-            <flux:icon icon="truck" class="size-16" />
-            <span
-              class="absolute top-3 right-3 px-2 py-1 text-xs font-semibold bg-emerald-950 border border-emerald-800 text-emerald-400 rounded-md">Tersedia</span>
-          </div>
-          <div class="p-6 space-y-4">
-            <div>
-              <h4 class="text-lg font-bold text-white">Toyota Innova Zenix</h4>
-              <p class="text-xs text-zinc-400">MPV • Automatic • 7 Kursi</p>
+        {{-- For Each Motor  --}}
+        @foreach ($motors as $motor)
+          <div class="rounded-2xl bg-zinc-900 border border-zinc-800 overflow-hidden flex flex-col justify-between">
+            <div
+              class="aspect-video bg-zinc-950 flex items-center justify-center text-zinc-600 relative overflow-hidden">
+              @if ($motor->primaryPhoto?->image_path)
+                <img src="{{ asset('storage/' . $motor->primaryPhoto->image_path) }}" alt="{{ $motor->name }}"
+                  class="w-full h-full object-cover">
+              @else
+                <flux:icon icon="truck" class="size-16" />
+              @endif
+              <span
+                class="absolute top-3 right-3 px-2 py-1 text-xs font-semibold bg-emerald-950 border border-emerald-800 text-emerald-400 rounded-md">Tersedia</span>
             </div>
-            <div class="flex items-center justify-between pt-4 border-t border-zinc-800">
+            <div class="p-6 space-y-4">
               <div>
-                <span class="text-xl font-bold text-white">Rp 650.000</span>
-                <span class="text-xs text-zinc-400">/ hari</span>
+                <h4 class="text-lg font-bold text-white">{{ $motor->name }}</h4>
+                <p class="text-xs text-zinc-400">{{ $motor->type }} • {{ $motor->cc }}cc</p>
               </div>
-              <flux:button variant="primary" size="sm">Sewa Sekarang</flux:button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Motor Item Card 2 -->
-        <div class="rounded-2xl bg-zinc-900 border border-zinc-800 overflow-hidden flex flex-col justify-between">
-          <div class="aspect-video bg-zinc-950 flex items-center justify-center text-zinc-600 relative">
-            <flux:icon icon="truck" class="size-16" />
-            <span
-              class="absolute top-3 right-3 px-2 py-1 text-xs font-semibold bg-emerald-950 border border-emerald-800 text-emerald-400 rounded-md">Tersedia</span>
-          </div>
-          <div class="p-6 space-y-4">
-            <div>
-              <h4 class="text-lg font-bold text-white">Honda HR-V Turbo</h4>
-              <p class="text-xs text-zinc-400">SUV • Automatic • 5 Kursi</p>
-            </div>
-            <div class="flex items-center justify-between pt-4 border-t border-zinc-800">
-              <div>
-                <span class="text-xl font-bold text-white">Rp 550.000</span>
-                <span class="text-xs text-zinc-400">/ hari</span>
+              <div class="flex items-center justify-between pt-4 border-t border-zinc-800">
+                <div>
+                  <span class="text-xl font-bold text-white">Rp.{{ $motor->price_per_day }}</span>
+                  <span class="text-xs text-zinc-400">/ hari</span>
+                </div>
+                <flux:button variant="primary" size="sm">Sewa Sekarang</flux:button>
               </div>
-              <flux:button variant="primary" size="sm">Sewa Sekarang</flux:button>
             </div>
           </div>
-        </div>
-
-        <!-- Motor Item Card 3 -->
-        <div class="rounded-2xl bg-zinc-900 border border-zinc-800 overflow-hidden flex flex-col justify-between">
-          <div class="aspect-video bg-zinc-950 flex items-center justify-center text-zinc-600 relative">
-            <flux:icon icon="truck" class="size-16" />
-            <span
-              class="absolute top-3 right-3 px-2 py-1 text-xs font-semibold bg-emerald-950 border border-emerald-800 text-emerald-400 rounded-md">Tersedia</span>
-          </div>
-          <div class="p-6 space-y-4">
-            <div>
-              <h4 class="text-lg font-bold text-white">Toyota Avanza Veloz</h4>
-              <p class="text-xs text-zinc-400">MPV • Manual • 7 Kursi</p>
-            </div>
-            <div class="flex items-center justify-between pt-4 border-t border-zinc-800">
-              <div>
-                <span class="text-xl font-bold text-white">Rp 400.000</span>
-                <span class="text-xs text-zinc-400">/ hari</span>
-              </div>
-              <flux:button variant="primary" size="sm">Sewa Sekarang</flux:button>
-            </div>
-          </div>
-        </div>
+        @endforeach
       </div>
     </div>
   </section>

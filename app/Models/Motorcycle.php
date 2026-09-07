@@ -27,8 +27,6 @@ class Motorcycle extends Model
 
     public function primaryPhoto()
     {
-        return $this->photos()
-            ->where('is_primary', true)
-            ->first();
+        return $this->hasOne(MotorcyclePhoto::class)->where('is_primary', true);
     }
 }
