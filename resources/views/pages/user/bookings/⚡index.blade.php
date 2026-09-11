@@ -1,11 +1,17 @@
 <?php
 
+use App\Models\Booking;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Title('Sewa Saya')] #[Layout('layouts.user')] class extends Component {
-    // User bookings component logic
+new #[Title('Riwayat Booking')] #[Layout('layouts.user')] class extends Component {
+    public function with(): array
+    {
+        return [
+            'bookings' => Booking::with(['motor', 'user'])->get(),
+        ];
+    }
 }; ?>
 
 <div class="space-y-6">

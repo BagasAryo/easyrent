@@ -21,7 +21,7 @@
         </flux:sidebar.item>
         <flux:sidebar.item icon="key" :href="route('user.bookings.index')"
           :current="request()->routeIs('user.bookings.*')" wire:navigate>
-          {{ __('Sewa Saya') }}
+          {{ __('Riwayat Booking') }}
         </flux:sidebar.item>
         <flux:sidebar.item icon="magnifying-glass" href="{{ route('home') }}" wire:navigate>
           {{ __('Cari Motor') }}
