@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->ulid('public_id')->unique();
             $table->foreignId('booking_id')->unique()->constrained('bookings')->cascadeOnDelete();
-            $table->string('midtrans_order_id')->unique();
+            $table->string('order_id')->unique();
             $table->string('snap_token')->nullable();
             $table->enum('status', ['pending', 'settlement', 'expired', 'cancelled', 'failed'])->default('pending');
             $table->decimal('amount', 10, 2);

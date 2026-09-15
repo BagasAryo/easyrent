@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Booking;
 use App\Models\Motorcycle;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -28,7 +30,8 @@ class BookingSeeder extends Seeder
 
         $bookings = [
             [
-                'public_id' => \Illuminate\Support\Str::ulid(),
+                'public_id' => Str::ulid(),
+                'booking_code' => Str::upper(Str::random(8)),
                 'user_id' => $customer->id,
                 'motorcycle_id' => $motorId1,
                 'start_date' => Carbon::parse('2025-11-11'),
@@ -40,7 +43,8 @@ class BookingSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'public_id' => \Illuminate\Support\Str::ulid(),
+                'public_id' => Str::ulid(),
+                'booking_code' => Str::upper(Str::random(8)),
                 'user_id' => $customer->id,
                 'motorcycle_id' => $motorId2,
                 'start_date' => Carbon::parse('2025-12-24'),
@@ -52,7 +56,8 @@ class BookingSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'public_id' => \Illuminate\Support\Str::ulid(),
+                'public_id' => Str::ulid(),
+                'booking_code' => Str::upper(Str::random(8)),
                 'user_id' => $customer->id,
                 'motorcycle_id' => $motorId3,
                 'start_date' => Carbon::parse('2025-12-31'),
@@ -65,6 +70,6 @@ class BookingSeeder extends Seeder
             ],
         ];
 
-        \App\Models\Booking::insert($bookings);
+        Booking::insert($bookings);
     }
 }
