@@ -16,6 +16,7 @@ Route::livewire('/', 'pages::public.welcome')->name('home');
 Route::middleware(['auth', 'verified'])->prefix('user')->name('user.')->group(function () {
     Route::livewire('/dashboard', 'pages::user.dashboard')->name('dashboard');
     Route::livewire('/bookings', 'pages::user.bookings.index')->name('bookings.index');
+    Route::livewire('/documents', 'pages::user.documents.index')->name('documents.index');
 });
 
 

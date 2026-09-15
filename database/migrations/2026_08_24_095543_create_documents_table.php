@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->ulid('public_id')->unique();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('booking_id')->nullable()->constrained()->nullOnDelete();
             $table->enum('document_type', ['national_id', 'driving_license', 'passport', 'international_license']);
             $table->string('file_path');
             $table->enum('verification_status', ['pending', 'verified', 'rejected'])->default('pending');

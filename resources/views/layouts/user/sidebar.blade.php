@@ -17,14 +17,15 @@
       <flux:sidebar.group :heading="__('Customer Area')" class="grid">
         <flux:sidebar.item icon="home" :href="route('user.dashboard')" :current="request()->routeIs('user.dashboard')"
           wire:navigate>
-          {{ __('Dashboard Saya') }}
+          {{ __('Dashboard') }}
         </flux:sidebar.item>
-        <flux:sidebar.item icon="key" :href="route('user.bookings.index')"
+        <flux:sidebar.item icon="clipboard-document-check" :href="route('user.bookings.index')"
           :current="request()->routeIs('user.bookings.*')" wire:navigate>
           {{ __('Riwayat Booking') }}
         </flux:sidebar.item>
-        <flux:sidebar.item icon="magnifying-glass" href="{{ route('home') }}" wire:navigate>
-          {{ __('Cari Motor') }}
+        <flux:sidebar.item icon="document-text" :href="route('user.documents.index')"
+          :current="request()->routeIs('user.documents.*')" wire:navigate>
+          {{ __('Dokumen') }}
         </flux:sidebar.item>
       </flux:sidebar.group>
     </flux:sidebar.nav>
